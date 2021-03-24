@@ -1,0 +1,29 @@
+<mat-card class="app-card">
+  <mat-card-header>
+    <mat-card-title>Problem parameters</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="content" [formGroup]="this.formGroup">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Number of points</mat-label>
+        <input matInput formControlName="numberOfPoints">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Start point</mat-label>
+        <input matInput  formControlName="startPoint">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Solution Strategy</mat-label>
+        <mat-select formControlName="firstSolutionStrategy">
+          <mat-option *ngFor="let item of firstSolutionStrategies | async" value={{item.code}}>{{item.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button mat-mini-fab color="primary" type="submit" [disabled]="this.formGroup.invalid" (click)="onSubmit()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

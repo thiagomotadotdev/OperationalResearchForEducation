@@ -1,0 +1,35 @@
+<mat-card class="app-card">
+    <mat-card-header>
+        <mat-card-title>Problem parameters</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+        <div *ngFor="let formArray of this.formMatrix; let i = index" class="form-line">
+            <mat-form-field *ngFor="let control of formArray; let j = index" appearance="fill" class="form-item">
+                <input matInput [formControl]="control">
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+        <button mat-mini-fab color="primary" type="submit" [disabled]="isInvalid()" (click)="onSubmit()">
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="this.solution | async; let solution" class="app-card">
+    <mat-card-header>
+        <mat-card-title>Solution</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <mat-form-field appearance="fill" class="form-item" style="max-width: 300px;">
+                <mat-label>Distance</mat-label>
+                <input matInput disabled [value]="solution.distance">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field *ngFor="let point of solution.route" appearance="fill" class="form-item">
+                <input matInput disabled [value]="point">
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+</mat-card>

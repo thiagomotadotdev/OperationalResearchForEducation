@@ -1,0 +1,66 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+}
+
+.button {
+    margin-top: 5px;
+    margin-bottom: 30px;
+    height: 40px;
+}
+
+.variable {
+    max-width: 100px;
+    min-width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.restriction-expression {
+    width: 800px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.solve-type {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.objective-expression {
+    width: 500px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.result {
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

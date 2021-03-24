@@ -1,0 +1,8 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span class="spacer"></span>
+        <span>
+            <button *ngFor="let item of this.items" mat-button [routerLink]="item.Route">{{item.Name}}</button>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>

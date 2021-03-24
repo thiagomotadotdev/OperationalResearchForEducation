@@ -1,0 +1,123 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OperationalResearchForEducation API v1",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/Solver": {
+      "post": {
+        "tags": [
+          "Solver"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TravelingSalesmanProblem"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TravelingSalesmanProblem"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TravelingSalesmanProblem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TravelingSalesmanSolution"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DistanceMatrix": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FirstSolutionStrategy": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          15
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TravelingSalesmanProblem": {
+        "type": "object",
+        "properties": {
+          "distanceMatrix": {
+            "$ref": "#/components/schemas/DistanceMatrix"
+          },
+          "numberOfPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startPoint": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstSolutionStrategy": {
+            "$ref": "#/components/schemas/FirstSolutionStrategy"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TravelingSalesmanSolution": {
+        "type": "object",
+        "properties": {
+          "route": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "routeDistance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "distance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstSolutionStrategy": {
+            "$ref": "#/components/schemas/FirstSolutionStrategy"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

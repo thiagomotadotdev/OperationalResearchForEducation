@@ -1,0 +1,60 @@
+<mat-card class="app-card">
+    <mat-card-header>
+        <mat-card-title>Solve a problem with only expressions</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+        <div class="flex-row">
+            <mat-form-field *ngFor="let variable of this.variables; let i = index;" appearance="fill" class="variable">
+                <mat-label>Variable {{ i+1 }}</mat-label>
+                <input matInput [formControl]="variable">
+            </mat-form-field>
+        </div>
+        <button (click)="this.addNewVariable()" mat-raised-button color="primary" class="button">
+            Add new variable
+        </button>
+        <div class="flex-column">
+            <mat-form-field *ngFor="let restrictionExpression of this.restrictionExpressions; let i = index;"
+                appearance="fill" class="restriction-expression">
+                <mat-label>Restriction expression {{ i+1 }}</mat-label>
+                <input matInput [formControl]="restrictionExpression">
+            </mat-form-field>
+        </div>
+        <button (click)="this.addNewRestrictionExpression()" mat-raised-button color="primary" class="button">
+            Add new restriction expression
+        </button>
+        <div class="flex-row">
+            <mat-form-field appearance="fill" class="solve-type">
+                <mat-label>Solve type</mat-label>
+                <mat-select [formControl]="this.solveType">
+                  <mat-option value="1">Min</mat-option>
+                  <mat-option value="2">Max</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <mat-form-field appearance="fill" class="objective-expression" color="primary">
+                <mat-label>Objective expression</mat-label>
+                <input matInput [formControl]="this.objectiveExpression">
+            </mat-form-field>
+        </div>
+        <button (click)="this.solve()" [disabled]="this.formIsInvalid()" mat-raised-button color="primary" class="button">
+            Solve
+        </button>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="this.solution$ | async as solution" class="app-card">
+    <mat-card-header>
+        <mat-card-title>Solution</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+        <div class="flex-row">
+            <mat-form-field *ngFor="let variable of solution.variables" appearance="fill" class="variable">
+                <mat-label>{{variable.name}}</mat-label>
+                <input matInput [value]="variable.value">
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill" class="result">
+            <mat-label>Result</mat-label>
+            <input matInput [value]="solution.result">
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>

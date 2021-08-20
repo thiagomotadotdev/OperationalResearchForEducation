@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks:
+    operational-research-for-education:
+
+services:
+    operational-research-for-education-api:
+        restart: always
+        image: thiagomotadev/operational-research-for-education-api
+        networks:
+            - operational-research-for-education
+        ports:
+            - 14001:80
+    operational-research-for-education-web:
+        restart: always
+        image: thiagomotadev/operational-research-for-education-web
+        networks:
+            - operational-research-for-education
+        ports:
+            - 14000:80
